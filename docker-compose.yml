@@ -1,0 +1,21 @@
+version: "2"
+services:
+  back-end:
+    container_name: linketek-backend
+    build: ./api/.
+    ports:
+      - "8081:8081"
+    links:
+      - mongo
+  front-end:
+    container_name: linketek-frontend
+    build: ./front-end/.
+    ports:
+      - "8080:8080"
+    links:
+      - back-end
+  mongo:
+    container_name: linketek-database
+    image: mongo
+    ports:
+      - "27017:27017"
